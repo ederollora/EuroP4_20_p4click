@@ -1,0 +1,6 @@
+---
+defines:
+  - name: MAX_PORTS
+    value: 255
+  - name: PKT_INSTANCE_TYPE_INGRESS_CLONE
+    value: 1

@@ -1,0 +1,22 @@
+---
+include:
+  name:
+    - ipv4_fwd.code.p4
+    - ipv4_chk.code.p4
+integrate:
+  - logic: ipv4_fwd.code.p4
+    block: IngressImpl
+    controlName: Ipv4_fwd
+    callControl: True
+    arguments:
+      - type: headers_t
+        name: hdr
+      - type: metadata
+        name: meta
+      - type: standard_metadata_t
+        name: standard_metadata
+  - logic: ipv4_chk.code.p4
+    block: ComputeChecksumImpl
+    controlName: null
+    callControl: false
+    merge: true

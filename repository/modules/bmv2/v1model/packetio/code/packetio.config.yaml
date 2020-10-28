@@ -1,0 +1,5 @@
+integrate:
+  ingress:
+    name: Packetio_ingress
+  egress:
+    name: Packetio_egress

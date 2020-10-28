@@ -1,0 +1,136 @@
+---
+headers:
+  types:
+    ethernet:
+    - name: ethernet
+    - name: outer_ethernet
+    ipv4:
+    - name: ipv4
+    - name: outer_ipv4
+    tcp:
+    - name: tcp
+    udp:
+    - name: udp
+    - name: outer_udp
+    int_shim:
+    - name: int_sim
+    int_meta:
+    - name: int_meta
+    int_metadata:
+    - name: int_metadata_stack
+  transitions:
+    start:
+      nextStates:
+      - nextHeader: ethernet
+        transition: direct
+        onValue: null
+        onValueType: null
+        onHeader: null
+        onField: null
+      - nextHeader: default
+        include: false
+        state: null
+    ethernet:
+      nextStates:
+      - nextHeader: ipv4
+        transition: conditional
+        onValue: "0x0800"
+        onValueType: hex
+        onHeader: ipv4
+        onField: protocol
+      - default:
+        - include: true
+          state: accept
+    ipv4:
+      nextStates:
+      - next_header: tcp
+        transition: conditional
+        onvalue: "0x06"
+        onvaluetype: hex
+        onheader: ipv4
+        onfield: protocol
+      - next_header: udp
+        transition: conditional
+        onvalue: "0x11"
+        onvaluetype: hex
+        onheader: ipv4
+        onfield: protocol
+      - default:
+        include: true
+        state: accept
+    tcp:
+      nextStates:
+      - nextHeader: int_shim
+        transition: conditional
+        onvalue: "0x17"
+        onvaluetype: hex
+        onheader: ipv4
+        onfield: dscp
+      - default:
+        include: true
+        state: accept
+    udp:
+      nextStates:
+      - nextHeader: int_shim
+        transition: conditional
+        onvalue: "0x17"
+        onvaluetype: hex
+        onheader: ipv4
+        onfield: dscp
+      - default:
+        include: true
+        state: accept
+    int_shim:
+      nextStates:
+      - nextHeader: int_shim
+        transition: direct
+        onvalue: "0x17"
+        onvaluetype: hex
+        onheader: ipv4
+        onfield: dscp
+      - nextHeader: default
+        include: false
+        state: null
+    int_meta:
+      nextStates:
+      - nextHeader: int_metadata
+        transition: direct
+        onvalue: "0x17"
+        onvaluetype: hex
+        onheader: ipv4
+        onfield: dscp
+      - nextHeader: default
+        include: false
+        state: null
+    int_metadata:
+      nextStates:
+      - nextHeader: accept
+        transition: direct
+        onHeader: null
+        onField: null
+        onValue: null
+        onValueType: null
+        extractOperation:
+          operation: "(bit<32>) ((hdr.int_shim.len - 3) << 5)"
+          toHeader: int_metadata_stack
+  deparser:
+    - ethernet:report_ethernet
+    - ipv4:report_ipv4
+    - tcp:report_tcp
+    - udp:report_udp
+    - int_report_header:int_report_header
+    - ethernet:ethernet
+    - ipv4:ipv4
+    - tcp:tcp
+    - udp:udp
+    - int_shim:int_shim
+    - int_meta:int_meta
+    - int_switch_id:int_switch_id
+    - int_level1_port_ids:int_level1_port_ids
+    - int_hop_latency:int_hop_latency
+    - int_q_occupancy:int_q_occupancy
+    - int_ingress_tstamp:int_ingress_tstamp
+    - int_egress_tstamp:int_egress_tstamp
+    - int_level2_port_ids:int_level2_port_ids
+    - int_egress_port_tx_util:int_egress_port_tx_util
+    - int_metadata_stack:int_metadata_stack

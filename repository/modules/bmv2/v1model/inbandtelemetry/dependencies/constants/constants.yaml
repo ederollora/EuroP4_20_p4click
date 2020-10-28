@@ -1,0 +1,63 @@
+---
+constants:
+  - name: TYPE_IPV4
+    size: 16
+    value: 0x0800
+  - name: TYPE_ICMP
+    size: 8
+    value: 0x01
+  - name: TYPE_TCP
+    size: 8
+    value: 0x06
+  - name: TYPE_UDP
+    size: 8
+    value: 0x11
+  - name: TYPE_ICMP_REQ
+    size: 8
+    value: 0x08
+  - name: TYPE_ICMP_REP
+    size: 8
+    value: 0x00
+  - name: DSCP_INT
+    size: 6
+    value: 0x17
+  - name: ETHERNET_HEADER_SIZE_BYTES
+    size: 8
+    value: 14
+  - name: UDP_HEADER_SIZE_BYTES
+    size: 8
+    value: 8
+  - name: TELEMETRY_REPORT_HEADER_LEN_BYTES
+    size: 8
+    value: 16
+  - name: WORD_TO_BYTES
+    size: 8
+    value: 4
+  - name: DROPPED
+    size: 1
+    value: 1
+  - name: CONGESTED_QUEUE
+    size: 1
+    value: 1
+  - name: TRACKED_FLOW
+    size: 1
+    value: 1
+  - name: HW_ID
+    size: 6
+    value: 1
+  - name: FIXED_INT_REPORT_LENGTH
+    size: 8
+    value: 4
+  - name: CPU_MIRROR_SESSION_ID
+    size: 8
+    value: 250
+  - name: REPORT_MIRROR_SESSION_ID
+    size: 32
+    value: 500
+  - name: NEXT_PROTO_ETHERNET
+    size: 3
+    value: 0
+  - name: CPU_PORT
+    typedef: port_t
+    size: 0
+    value: 255

@@ -1,0 +1,14 @@
+---
+typedefs:
+  - name: macAddr_t
+    size: 48
+  - name: ip4Addr_t
+    size: 32
+  - name: udp_port_t
+    size: 16
+  - name: port_t
+    size: 9
+  - name: next_hop_id_t
+    size: 16
+  - name: egressSpec_t
+    size: 9

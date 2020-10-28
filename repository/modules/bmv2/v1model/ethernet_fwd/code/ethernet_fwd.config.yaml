@@ -1,0 +1,16 @@
+---
+include:
+  name:
+  - eth_fwd.code.p4
+integrate:
+  - logic: ethernet_fwd.code.p4
+    block: IngressImpl
+    controlName: Ethernet_forward
+    callControl: True
+    arguments:
+      - type: headers_t
+        name: hdr
+      - type: metadata
+        name: meta
+      - type: standard_metadata_t
+        name: standard_metadata

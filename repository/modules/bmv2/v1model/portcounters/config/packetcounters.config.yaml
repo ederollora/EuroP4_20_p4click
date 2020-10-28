@@ -1,0 +1,6 @@
+---
+integrate:
+  ingress:
+    name: port_counters_ingress
+  egress:
+    name: port_counters_egress

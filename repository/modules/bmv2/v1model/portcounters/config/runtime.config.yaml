@@ -1,0 +1,4 @@
+---
+configure:
+  - name: MAX_PORTS
+    default_value: 255

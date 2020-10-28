@@ -1,0 +1,8 @@
+
+include:
+  name: inbandtelemetry
+integrate:
+  ingress:
+    name: Telemetry_Ingress
+  egress:
+    name: Telemetry_Egress
