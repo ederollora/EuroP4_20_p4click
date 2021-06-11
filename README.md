@@ -18,7 +18,7 @@ One might also use:
 
 ```bibtex
 @inproceedings{10.1145/3426744.3431330,
-  author = {Zaballa, Eder Ollora and Franco, David and Berger, Michael S. and Higuero, Marivi},
+  author = {Ollora Zaballa, Eder and Franco, David and Berger, Michael S. and Higuero, Marivi},
   title = {A Perspective on P4-Based Data and Control Plane Modularity for Network Automation},
   year = {2020},
   isbn = {9781450381819},
